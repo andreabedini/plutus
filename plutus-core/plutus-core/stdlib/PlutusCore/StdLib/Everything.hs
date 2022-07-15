@@ -48,7 +48,6 @@ stdLib =
                   [ plcTermFile "Const"  Function.const
                   , plcTermFile "Apply"  applyFun
                   , plcTypeFile "Self"   $ _recursiveType selfData
-                  , plcTermFile "Unroll" unroll
                   , plcTermFile "Fix"    fix
                   , plcTermFile "Fix2"   $ fixN 2 fixBy
                   ]

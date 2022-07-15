@@ -91,15 +91,13 @@ selfData = runQuote $ do
 
 -- | @unroll@ as a PLC term.
 --
--- > /\(a :: *) -> \(s : self a) -> unwrap s s
-unroll :: TermLike term TyName Name uni fun => term ()
-unroll = runQuote $ do
+-- > unroll a = \(s : self a) -> unwrap s s
+unroll :: TermLike term TyName Name uni fun => Type TyName uni () -> term ()
+unroll a = runQuote $ do
     let self = _recursiveType selfData
-    a <- freshTyName "a"
     s <- freshName "s"
     return
-        . tyAbs () a (Type ())
-        . lamAbs () s (TyApp () self $ TyVar () a)
+        . lamAbs () s (TyApp () self a)
         . apply () (unwrap () $ var () s)
         $ var () s
 
@@ -121,18 +119,17 @@ fixAndType = runQuote $ do
     s <- freshName "s"
     x <- freshName "x"
     let funAB = TyFun () (TyVar () a) $ TyVar () b
-        unrollFunAB = tyInst () unroll funAB
     let selfFunAB = TyApp () self funAB
     let fixTerm =
             tyAbs () a (Type ())
             . tyAbs () b (Type ())
             . lamAbs () f (TyFun () funAB funAB)
-            . apply () unrollFunAB
+            . apply () (unroll funAB)
             . wrapSelf [funAB]
             . lamAbs () s selfFunAB
             . lamAbs () x (TyVar () a)
             $ mkIterApp () (var () f)
-            [ apply () unrollFunAB $ var () s
+            [ apply () (unroll funAB) $ var () s
             , var () x
             ]
     let fixType =
