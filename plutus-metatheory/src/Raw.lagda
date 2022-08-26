@@ -26,14 +26,15 @@ open import Builtin.Constant.Type ⊤ (λ _ → RawTy)
 
 data RawTyCon : Set
 
+-- Types, indexed by context and kind
 data RawTy where
-  `   : ℕ → RawTy
-  _⇒_ : RawTy → RawTy → RawTy
-  Π   : Kind → RawTy → RawTy
-  ƛ   : Kind → RawTy → RawTy
-  _·_ : RawTy → RawTy → RawTy
-  con : RawTyCon → RawTy
-  μ    : RawTy → RawTy → RawTy
+  `   : ℕ → RawTy -- type variable
+  _⇒_ : RawTy → RawTy → RawTy -- function type
+  Π   : Kind → RawTy → RawTy -- forall type
+  ƛ   : Kind → RawTy → RawTy -- type lambda
+  _·_ : RawTy → RawTy → RawTy -- type application
+  con : RawTyCon → RawTy -- type constant
+  μ    : RawTy → RawTy → RawTy -- recursive type
 
 {-# COMPILE GHC RawTy = data RType (RTyVar | RTyFun | RTyPi | RTyLambda | RTyApp | RTyCon | RTyMu) #-}
 
