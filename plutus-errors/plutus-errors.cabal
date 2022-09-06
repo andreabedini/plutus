@@ -42,14 +42,14 @@ library
       Errors.TH.GenDocs
   hs-source-dirs: src
   build-depends:
-      base >=4.7 && <5,
-      template-haskell >= 2.16,
-      th-abstraction < 0.4,
-      containers >= 0.6,
-      prettyprinter >=1.1.0.1,
-      plutus-core -any,
-      plutus-tx -any,
-      plutus-tx-plugin
+        base             >= 4.7     && <5
+      , template-haskell >= 2.16    && <2.17
+      , th-abstraction   >= 0.3.2.0 && <0.4
+      , containers       >= 0.6     && <0.7
+      , prettyprinter    >= 1.1.0.1 && <1.8
+      , plutus-core
+      , plutus-tx
+      , plutus-tx-plugin
 
 executable plutus-errors-next
   import: lang

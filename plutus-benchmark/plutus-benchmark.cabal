@@ -52,11 +52,11 @@ library plutus-benchmark-common
   other-modules:
       Paths_plutus_benchmark
   build-depends:
-      base >=4.7 && <5
-    , plutus-core -any
-    , plutus-tx -any
-    , criterion -any
-    , filepath -any
+      base      >= 4.7      && <5
+    , plutus-core
+    , plutus-tx
+    , criterion >= 1.5.13.0 && <1.6
+    , filepath  >= 1.4.2.1  && <1.5
 
 
 ---------------- nofib ----------------
@@ -77,12 +77,12 @@ library nofib-internal
       PlutusBenchmark.NoFib.LastPiece
       PlutusBenchmark.NoFib.Prime
   build-depends:
-      base >=4.7 && <5
-    , plutus-benchmark-common
-    , plutus-core -any
-    , plutus-tx -any
-    , plutus-tx-plugin -any
-    , deepseq -any
+      base    >= 4.7     && <5
+    , plutus-benchmark:plutus-benchmark-common
+    , plutus-core
+    , plutus-tx
+    , plutus-tx-plugin
+    , deepseq >= 1.4.4.0 && <1.5
 
 executable nofib-exe
   import: lang
@@ -164,12 +164,12 @@ library lists-internal
       PlutusBenchmark.Lists.Sort.MergeSort
       PlutusBenchmark.Lists.Sort.QuickSort
   build-depends:
-      base >=4.7 && <5
-    , plutus-benchmark-common
-    , plutus-core -any
-    , plutus-tx -any
-    , plutus-tx-plugin -any
-    , mtl -any
+      base >= 4.7   && <5
+    , plutus-benchmark:plutus-benchmark-common
+    , plutus-core
+    , plutus-tx
+    , plutus-tx-plugin
+    , mtl  >= 2.2.2 && <2.3
 
 executable list-sort-exe
   import: lang
