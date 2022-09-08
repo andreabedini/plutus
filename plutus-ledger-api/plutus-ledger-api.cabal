@@ -79,7 +79,7 @@ library
         , base16-bytestring  >= 1         && <1.1
         , deepseq            >= 1.4.4.0   && <1.5
         , tagged             >= 0.8.6.1   && <0.9
-        , lens               >= 4.19.2    && <4.20
+        , lens               >= 4.19.2    && <5.2
         , barbies            >= 2.0.3.1   && <2.1
 
 test-suite plutus-ledger-api-test
